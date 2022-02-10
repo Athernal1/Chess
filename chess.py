@@ -1,3 +1,4 @@
+
 def show(chessboard):
     """Shows the chessboard in the console.
     DOES NOT WORK UNTIL ALL CLASES: Pawn, Knight, Queen, King, Rook, Bishop ARE CREATED!!!
@@ -21,22 +22,25 @@ def show(chessboard):
     for y in range(7, -1, -1):
         print(y, end='\t')
         for x in range(8):
-            if chessboard.board[x][y] is not None:
-                if chessboard.board[x][y].color == 'white':
-                    print(WHITE[type(chessboard.board[x][y])], end='\t')
             if chessboard.board[y][x] is not None:
                 if chessboard.board[y][x].color == 'white':
                     print(WHITE[type(chessboard.board[y][x])], end='\t')
                 else:
-                    print(BLACK[type(chessboard.board[x][y])], end='\t')
                     print(BLACK[type(chessboard.board[y][x])], end='\t')
             else:
                 print('\t', end='')
         print('\n')
+    print('\t', end='')
+    for x in range(8):
+        print(x, end='\t')
+    print()
+
+
+WHITE = 'white'
+BLACK = 'black'
 
 
 class Chessboard:
-    pass
 
     def __init__(self):
         self.color = "white"
@@ -165,7 +169,7 @@ class Pawn(Figure):
                 allowed_moves.append((self.x, self.y + 2))
             allowed_moves.append((self.x, self.y + 1))
 
-            elif self.color == "black":
+        elif self.color == "black":
             if not self.if_moved and not chessboard.board[self.y - 1][self.x]:
                 allowed_moves.append((self.x, self.y - 2))
             allowed_moves.append((self.x, self.y - 1))
